@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Component Gallery</title>
+  <link rel="stylesheet" href="../../assets/ifs-cloud.css">
+  <script src="../../assets/ifs-cloud.js"></script>
+  <style>
+    .demo h2 { font-size: 14px; }
+    .demo .ifs-card-body { display: flex; flex-direction: column; gap: 12px; }
+    .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 6px; }
+    .icon-grid div { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; background: var(--surface-2); font-size: 11.5px; color: var(--text-2); }
+    .icon-grid svg { color: var(--primary); }
+  </style>
+</head>
+<body data-nav="components">
+<main class="ifs-page" data-tabs>
+
+  <div class="ifs-page-header">
+    <div class="ifs-breadcrumb"><a href="lobby.html"><i data-icon="home"></i></a><i data-icon="chevron-right"></i><span>Mockup Kit</span></div>
+    <div class="ifs-title-row"><h1>Component Gallery</h1><span class="sub">Copy any block into your mockup page</span></div>
+  </div>
+
+  <div class="ifs-page-body">
+
+    <div class="ifs-card demo">
+      <div class="ifs-card-header"><h2>Buttons &amp; command bar</h2></div>
+      <div class="ifs-card-body">
+        <div class="ifs-commandbar">
+          <button class="btn"><i data-icon="plus"></i>New</button>
+          <button class="btn"><i data-icon="edit"></i>Edit</button>
+          <button class="btn danger"><i data-icon="trash"></i>Delete</button>
+          <button class="btn" disabled><i data-icon="save"></i>Save (disabled)</button>
+          <span class="sep"></span>
+          <div class="ifs-menu-wrap">
+            <button class="btn" data-menu>Dropdown<i data-icon="chevron-down" class="caret"></i></button>
+            <div class="ifs-menu"><button>Action one</button><button>Action two</button><hr><a href="#"><i data-icon="link"></i>Navigate…</a></div>
+          </div>
+          <div class="spacer"></div>
+          <button class="btn icon" title="Icon button"><i data-icon="refresh"></i></button>
+        </div>
+        <div class="row">
+          <button class="btn primary">Primary</button>
+          <button class="btn secondary">Secondary</button>
+          <button class="btn primary sm">Small primary</button>
+          <button class="btn secondary sm">Small secondary</button>
+          <button class="btn secondary" data-toast="Saved successfully">Show success toast</button>
+          <button class="btn secondary" data-toast="Something needs attention" data-toast-type="warning">Warning toast</button>
+          <button class="btn secondary" data-toast="Operation failed" data-toast-type="danger">Error toast</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-equal">
+      <div class="ifs-card demo">
+        <div class="ifs-card-header"><h2>Badges, state indicator, selector, progress</h2></div>
+        <div class="ifs-card-body">
+          <div class="row" style="gap:6px">
+            <span class="badge">Planned</span><span class="badge info">Released</span><span class="badge primary">Reserved</span>
+            <span class="badge success">Delivered</span><span class="badge warning">Partially Delivered</span><span class="badge danger">Blocked</span>
+            <span class="badge plain primary">No dot</span>
+          </div>
+          <p class="text-2 mt-0">State indicator (page level, top-right of the title row). Click it to see all states. <code>data-emphasis</code>: primary | info | success | warning | danger | neutral.</p>
+          <div class="row" style="gap:24px">
+            <div class="ifs-state-indicator" data-states="Planned|Released|Reserved|Picked|Delivered|Invoiced" data-current="Reserved"></div>
+            <div class="ifs-state-indicator" data-states="Open|In Progress|Closed" data-current="Closed" data-emphasis="success"></div>
+            <div class="ifs-state-indicator" data-states="Planned|Released|Blocked" data-current="Blocked" data-emphasis="danger" data-progress="60"></div>
+          </div>
+          <p class="text-2 mt-0">Record selector (title row of a detail page):</p>
+          <div><div class="ifs-selector" data-records="C1045 – Alpen Industrie GmbH|C1046 – Baltic Machinery Sp. z o.o.|C1047 – Nordic Tools AB"></div></div>
+          <div class="ifs-progress"><div style="width:60%"></div></div>
+          <div class="ifs-progress success"><div style="width:85%"></div></div>
+        </div>
+      </div>
+      <div class="ifs-card demo">
+        <div class="ifs-card-header"><h2>Message bars</h2></div>
+        <div class="ifs-card-body">
+          <div class="ifs-alert info"><i data-icon="info"></i><span>Information message.</span><button class="close"><i data-icon="close"></i></button></div>
+          <div class="ifs-alert success"><i data-icon="check-circle"></i><span>Success message.</span></div>
+          <div class="ifs-alert warning"><i data-icon="warning"></i><span>Warning message.</span></div>
+          <div class="ifs-alert danger"><i data-icon="error"></i><span>Error message.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ifs-card demo ifs-record">
+      <div class="ifs-card-header">
+        <h2>Fields – read-only ↔ edit mode</h2><div class="spacer"></div>
+        <button class="btn sm" data-action="edit"><i data-icon="edit"></i>Edit</button>
+        <button class="btn sm" data-action="save"><i data-icon="save"></i>Save</button>
+        <button class="btn sm" data-action="cancel"><i data-icon="close"></i>Cancel</button>
+      </div>
+      <div class="ifs-card-body">
+        <p class="text-2 mt-0">Write fields read-only; the <b>Edit</b> button turns them into inputs based on <code>data-type</code> (text, number, date, lov, select, checkbox, textarea). Add <code>data-readonly</code> to keep a field locked.</p>
+        <div class="ifs-fields cols-4">
+          <div class="ifs-field" data-readonly><label>ID (read-only)</label><div class="ifs-field-value">EQ-0042</div></div>
+          <div class="ifs-field required" data-type="text"><label>Text</label><div class="ifs-field-value">Compressor line 2</div></div>
+          <div class="ifs-field" data-type="number"><label>Number</label><div class="ifs-field-value">125</div></div>
+          <div class="ifs-field" data-type="date"><label>Date</label><div class="ifs-field-value">2026-10-21</div></div>
+          <div class="ifs-field" data-type="lov"><label>LOV</label><div class="ifs-field-value" data-value="WRO">WRO <span class="desc">– Wrocław</span></div></div>
+          <div class="ifs-field" data-type="select" data-options="Low|Medium|High"><label>Select</label><div class="ifs-field-value">Medium</div></div>
+          <div class="ifs-field" data-type="checkbox" data-check-label="Active"><label>Checkbox</label><div class="ifs-field-value">Yes</div></div>
+          <div class="ifs-field"><label>Empty value</label><div class="ifs-field-value"></div></div>
+          <div class="ifs-field span-all" data-type="textarea"><label>Textarea</label><div class="ifs-field-value">Longer description text goes here.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ifs-card demo">
+      <div class="ifs-card-header"><h2>Raw inputs</h2></div>
+      <div class="ifs-card-body">
+        <div class="ifs-fields cols-4">
+          <div class="ifs-field"><label>Input</label><input class="ifs-input" placeholder="Type here"></div>
+          <div class="ifs-field"><label>LOV input</label><div class="ifs-input-icon"><input class="ifs-input"><button><i data-icon="lov"></i></button></div></div>
+          <div class="ifs-field"><label>Select</label><select class="ifs-select"><option>Option A</option><option>Option B</option></select></div>
+          <div class="ifs-field invalid"><label>Invalid</label><input class="ifs-input" value="ABC"><div class="hint">Value must be numeric.</div></div>
+          <div class="ifs-field"><label>Checkbox</label><label class="ifs-check"><input type="checkbox" checked> Checked</label></div>
+          <div class="ifs-field"><label>Toggle</label><label class="ifs-toggle"><input type="checkbox" checked> Enabled</label></div>
+          <div class="ifs-field span-2"><label>Radio</label><div class="ifs-radio-group"><label><input type="radio" name="r" checked>One</label><label><input type="radio" name="r">Two</label><label><input type="radio" name="r">Three</label></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ifs-card demo">
+      <div class="ifs-card-header"><h2>Tabs &amp; collapsible groups</h2></div>
+      <div class="ifs-card-body" data-tabs>
+        <div class="ifs-tabs">
+          <button class="ifs-tab active" data-tab="t1">First</button><button class="ifs-tab" data-tab="t2">Second <span class="count">3</span></button><button class="ifs-tab" data-tab="t3">Third</button>
+        </div>
+        <div class="ifs-tab-panel active" data-panel="t1">
+          <div class="ifs-group"><div class="ifs-group-header"><i data-icon="chevron-down" class="chev"></i>Expanded group</div><div class="ifs-group-body">Group content.</div></div>
+          <div class="ifs-group collapsed"><div class="ifs-group-header"><i data-icon="chevron-down" class="chev"></i>Collapsed group</div><div class="ifs-group-body">Hidden content.</div></div>
+        </div>
+        <div class="ifs-tab-panel" data-panel="t2"><div class="ifs-empty"><i data-icon="box"></i><b>No data</b>There are no records to show.</div></div>
+        <div class="ifs-tab-panel" data-panel="t3">Third tab content.</div>
+      </div>
+    </div>
+
+    <div class="ifs-card demo">
+      <div class="ifs-card-header"><h2>Dialogs, side panels, annotations</h2></div>
+      <div class="ifs-card-body">
+        <div class="row">
+          <button class="btn secondary" data-open-dialog="dlg-demo">Open dialog</button>
+          <button class="btn secondary" data-open-dialog="dlg-confirm">Open confirmation</button>
+          <button class="btn secondary" data-open-panel="panel-demo">Open side panel</button>
+        </div>
+        <div class="row" style="align-items:center">
+          <span>Mockup callout pin:</span><span class="note-pin" title="Explain this element to the client">1</span><span class="note-pin">2</span>
+          <div class="note-box grow">Note box – use for client comments. Toggle all notes from the user menu → “Show / hide mockup notes”.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ifs-card demo">
+      <div class="ifs-card-header"><h2>Icons</h2><span class="muted">Use &lt;i data-icon="name"&gt;&lt;/i&gt;</span></div>
+      <div class="ifs-card-body"><div class="icon-grid" id="icon-grid"></div></div>
+    </div>
+
+  </div>
+</main>
+
+<dialog class="ifs-dialog" id="dlg-demo">
+  <div class="ifs-dialog-header"><h2>Change Delivery Date</h2><button class="btn icon" data-close-dialog><i data-icon="close"></i></button></div>
+  <div class="ifs-dialog-body">
+    <div class="ifs-fields cols-2">
+      <div class="ifs-field required"><label>New Date</label><div class="ifs-input-icon"><input class="ifs-input" value="2026-11-10"><button><i data-icon="calendar"></i></button></div></div>
+      <div class="ifs-field"><label>Reason</label><select class="ifs-select"><option>Customer request</option><option>Supply delay</option></select></div>
+      <div class="ifs-field span-2"><label class="ifs-check"><input type="checkbox" checked> Update all lines</label></div>
+    </div>
+  </div>
+  <div class="ifs-dialog-footer"><button class="btn secondary" data-close-dialog>Cancel</button><button class="btn primary" data-close-dialog data-toast="Delivery date changed">OK</button></div>
+</dialog>
+<dialog class="ifs-dialog confirm" id="dlg-confirm">
+  <div class="ifs-dialog-header"><h2>Confirm</h2><button class="btn icon" data-close-dialog><i data-icon="close"></i></button></div>
+  <div class="ifs-dialog-body"><i data-icon="help" style="color:var(--info)"></i><div>Do you want to continue?</div></div>
+  <div class="ifs-dialog-footer"><button class="btn secondary" data-close-dialog>No</button><button class="btn primary" data-close-dialog>Yes</button></div>
+</dialog>
+<aside class="ifs-panel" id="panel-demo">
+  <div class="ifs-panel-header"><h2>Details</h2><button class="btn icon" data-close-panel><i data-icon="close"></i></button></div>
+  <div class="ifs-panel-body"><div class="ifs-fields cols-2"><div class="ifs-field"><label>Field</label><div class="ifs-field-value">Value</div></div><div class="ifs-field"><label>Field</label><div class="ifs-field-value">Value</div></div></div></div>
+</aside>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('icon-grid').innerHTML =
+      Object.keys(IFS.icons).map((n) => `<div>${IFS.icon(n)}${n}</div>`).join('');
+  });
+</script>
+</body>
+</html>

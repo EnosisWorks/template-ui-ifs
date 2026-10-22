@@ -1,0 +1,731 @@
+/* =====================================================================
+   IFS Cloud (Aurena) style mockup kit
+   Pure CSS, no dependencies. Tweak the tokens below to re-theme.
+   Layout: top bar / icon rail + navigator (left) / content (breadcrumb strip,
+   title, command bar, body) – modelled on IFS Cloud 24R/25R screens.
+   ===================================================================== */
+
+:root {
+  /* Top bar */
+  --hdr-bg: #ffffff;
+  --hdr-fg: #2e2e38;
+  --hdr-fg-2: #6b6b78;
+  --hdr-border: #e3e2e8;
+
+  /* Interactive accent (selection, active navigator item, links) */
+  --primary: #3462d8;
+  --primary-hover: #284fb8;
+  --primary-50: #eef3fd;
+  --primary-100: #dfe8fb;
+  --primary-200: #c3d4f6;
+  --focus: #3462d8;
+
+  /* Brand purple (lobby counter tiles, dark elements) */
+  --brand: #3d0a5b;
+  --brand-2: #52157a;
+  /* Light lobby tile */
+  --tile-light: #dde9f7;
+  --tile-light-fg: #2b63cf;
+
+  /* Surfaces */
+  --bg: #f2f1f4;
+  --surface: #ffffff;
+  --surface-2: #f7f7f9;
+  --border: #e2e1e6;
+  --border-strong: #c9c8cf;
+  --input-border: #9a99a3;
+  --required-bg: #fbe1e1;
+
+  /* Text */
+  --text: #24242c;
+  --text-2: #55555f;
+  --text-3: #8a8a95;
+
+  /* Status */
+  --success: #1d8348;  --success-bg: #e5f4ec;
+  --warning: #b86e00;  --warning-bg: #fdf1dc;
+  --danger:  #b3283f;  --danger-bg:  #fbe6e8;
+  --info:    #1e6ac0;  --info-bg:    #e3eefa;
+  --neutral: #5d5d6e;  --neutral-bg: #ececf1;
+
+  /* Charts */
+  --c1: #b02e5f; --c2: #3c6fd1; --c3: #31a37a; --c4: #e3a33b; --c5: #52157a; --c6: #8d8da0;
+
+  --radius: 3px;
+  --radius-lg: 4px;
+  --shadow-1: none;
+  --shadow-2: 0 6px 24px rgba(20, 10, 40, .16);
+  --header-h: 40px;
+  --rail-w: 36px;
+  --nav-w: 236px;
+  --font: "Segoe UI", Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3, h4 { margin: 0; font-weight: 600; }
+button, input, select, textarea { font: inherit; color: inherit; }
+code { font-size: 12px; background: var(--surface-2); padding: 1px 4px; border-radius: 3px; }
+
+/* ---------- Icons ---------- */
+svg.i { width: 16px; height: 16px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+svg.i.sm { width: 13px; height: 13px; }
+svg.i.lg { width: 19px; height: 19px; }
+svg.i.xl { width: 28px; height: 28px; }
+
+/* =====================================================================
+   Top bar
+   ===================================================================== */
+.ifs-header {
+  position: sticky; top: 0; z-index: 50;
+  height: var(--header-h);
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 10px 0 6px;
+  background: var(--hdr-bg); color: var(--hdr-fg);
+  border-bottom: 1px solid var(--hdr-border);
+}
+.ifs-header .hdr-btn {
+  width: 34px; height: 32px; border: 0; background: transparent; color: var(--hdr-fg-2);
+  display: inline-flex; align-items: center; justify-content: center; border-radius: var(--radius);
+  cursor: pointer; position: relative;
+}
+.ifs-header .hdr-btn:hover { background: var(--surface-2); color: var(--hdr-fg); }
+.ifs-header .hdr-btn .dot {
+  position: absolute; top: 3px; right: 3px; min-width: 15px; height: 15px; padding: 0 3px;
+  border-radius: 8px; background: #d93a4f; color: #fff; font-size: 10px; line-height: 15px; font-weight: 600;
+}
+.ifs-brand { display: flex; align-items: center; gap: 10px; padding: 0 4px; color: var(--hdr-fg); white-space: nowrap; }
+.ifs-brand:hover { text-decoration: none; }
+.ifs-brand .app { font-size: 14px; font-weight: 500; color: var(--hdr-fg); }
+.ifs-brand .env {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;
+  background: #f2b632; color: #2a1b00; padding: 3px 10px; border-radius: 3px;
+}
+.ifs-hdr-search { flex: 1; max-width: 460px; margin: 0 auto; position: relative; }
+.ifs-hdr-search input {
+  width: 100%; height: 28px; border-radius: 14px; border: 1px solid var(--border-strong);
+  background: var(--surface-2); color: var(--text); padding: 0 14px 0 32px; outline: none; font-size: 12.5px;
+}
+.ifs-hdr-search input:focus { background: #fff; border-color: var(--primary); }
+.ifs-hdr-search svg { position: absolute; left: 11px; top: 7px; color: var(--hdr-fg-2); width: 14px; height: 14px; }
+.ifs-hdr-right { display: flex; align-items: center; gap: 2px; }
+.ifs-avatar {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--brand); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; flex: none;
+}
+.ifs-user { display: flex; align-items: center; gap: 8px; padding: 0 6px; cursor: pointer; border-radius: var(--radius); height: 34px; }
+.ifs-user:hover { background: var(--surface-2); }
+.ifs-user .meta { line-height: 1.15; }
+.ifs-user .meta b { display: block; font-weight: 600; font-size: 12px; }
+.ifs-user .meta span { font-size: 11px; color: var(--hdr-fg-2); }
+
+/* =====================================================================
+   Icon rail + navigator
+   ===================================================================== */
+.ifs-rail {
+  position: fixed; top: var(--header-h); left: 0; bottom: 0; width: var(--rail-w); z-index: 46;
+  background: var(--surface); border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; align-items: center; padding: 6px 0; gap: 2px;
+}
+.ifs-rail a, .ifs-rail button {
+  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+  border: 0; background: none; border-radius: var(--radius); color: var(--text-2); cursor: pointer;
+}
+.ifs-rail a:hover, .ifs-rail button:hover { background: var(--surface-2); text-decoration: none; }
+.ifs-rail .on { color: var(--primary); }
+.ifs-rail hr { width: 20px; border: 0; border-top: 1px solid var(--border); margin: 4px 0; }
+.ifs-rail .bottom { margin-top: auto; }
+
+.ifs-nav-backdrop { position: fixed; inset: var(--header-h) 0 0 var(--rail-w); background: rgba(15,8,30,.25); z-index: 40; opacity: 0; pointer-events: none; transition: opacity .15s; }
+.ifs-nav {
+  position: fixed; top: var(--header-h); left: var(--rail-w); bottom: 0; width: var(--nav-w); z-index: 45;
+  background: var(--surface-2); border-right: 1px solid var(--border); box-shadow: var(--shadow-2);
+  transform: translateX(calc(-100% - var(--rail-w))); transition: transform .18s ease-out;
+  display: flex; flex-direction: column;
+}
+body.nav-open .ifs-nav { transform: none; }
+body.nav-open .ifs-nav-backdrop { opacity: 1; pointer-events: auto; }
+body.nav-pinned .ifs-nav { transform: none; box-shadow: none; z-index: 30; }
+body.nav-pinned .ifs-nav-backdrop { display: none; }
+
+.ifs-nav-top { padding: 6px; display: flex; gap: 4px; align-items: center; border-bottom: 1px solid var(--border); background: var(--surface); }
+.ifs-nav-top .ifs-input-icon { flex: 1; }
+.ifs-nav-top .ifs-input { height: 30px; border-color: var(--border); font-size: 12px; }
+.ifs-nav .pin { width: 28px; height: 28px; }
+.ifs-nav .pin.on { color: var(--primary); }
+.ifs-nav .pin.on svg.i { fill: var(--primary); }
+.ifs-nav-tree { overflow: auto; flex: 1; padding: 0 0 20px; }
+.ifs-nav-back {
+  display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; border: 0; background: var(--surface);
+  border-bottom: 1px solid var(--border); cursor: pointer; text-align: left; color: var(--text-2); font-size: 12.5px;
+}
+.ifs-nav-back:hover { color: var(--text); }
+.ifs-nav-title { padding: 14px 12px 10px; font-weight: 600; font-size: 13px; background: var(--surface); margin-bottom: 4px; }
+.ifs-nav-item {
+  display: flex; align-items: center; gap: 8px; width: calc(100% - 6px); margin: 0 3px 3px; padding: 8px 8px;
+  border: 0; border-radius: 2px; background: var(--surface); color: var(--text); text-align: left; cursor: pointer; font-size: 13px;
+}
+.ifs-nav-item:hover { background: var(--primary-50); text-decoration: none; }
+.ifs-nav-item .gi { color: var(--brand-2); }
+.ifs-nav-item .chev { margin-left: auto; color: var(--text-2); width: 14px; height: 14px; }
+.ifs-nav-item .count { margin-left: auto; font-size: 11px; background: var(--neutral-bg); color: var(--text-2); border-radius: 9px; padding: 0 7px; }
+.ifs-nav-item.active { background: var(--primary); color: #fff; }
+.ifs-nav-item.active .count { background: rgba(255,255,255,.25); color: #fff; }
+.ifs-nav-item .path { display: block; font-size: 11px; color: var(--text-3); }
+
+/* =====================================================================
+   Page layout
+   ===================================================================== */
+.ifs-page { min-height: calc(100vh - var(--header-h)); display: flex; flex-direction: column; margin-left: var(--rail-w); }
+body.nav-pinned .ifs-page { margin-left: calc(var(--rail-w) + var(--nav-w)); }
+body[data-shell="none"] .ifs-page { margin-left: 0; }
+
+.ifs-page-header { padding: 0 16px; }
+.ifs-breadcrumb {
+  display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-2); flex-wrap: wrap;
+  background: var(--surface); margin: 0 -16px; padding: 0 12px 0 16px; height: 32px; border-bottom: 1px solid var(--border);
+}
+.ifs-breadcrumb a { color: var(--text-2); }
+.ifs-breadcrumb .current { color: var(--text); font-weight: 600; }
+.ifs-breadcrumb svg.i { width: 13px; height: 13px; }
+.ifs-breadcrumb .bc-right { margin-left: auto; display: flex; gap: 4px; }
+.ifs-breadcrumb .bc-right button { border: 0; background: none; color: var(--text-2); cursor: pointer; padding: 4px; border-radius: var(--radius); display: flex; }
+.ifs-breadcrumb .bc-right button:hover { background: var(--surface-2); color: var(--text); }
+
+.ifs-title-row { display: flex; align-items: center; gap: 12px; padding: 12px 0 10px; flex-wrap: wrap; }
+.ifs-title-row h1 { font-size: 23px; font-weight: 500; color: #2e2e38; letter-spacing: -.2px; }
+.ifs-title-row .sub { color: var(--text-2); font-size: 14px; }
+.ifs-title-row .params { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text); cursor: pointer; }
+.ifs-title-row .params svg.i { width: 12px; height: 12px; }
+.ifs-title-row .fav { border: 0; background: none; color: var(--text-3); cursor: pointer; padding: 4px; border-radius: var(--radius); }
+.ifs-title-row .fav:hover, .ifs-title-row .fav.on { color: #e3a33b; }
+.ifs-title-row .fav.on svg { fill: #e3a33b; }
+.ifs-title-row .spacer { flex: 1; }
+.ifs-record-nav { display: inline-flex; align-items: center; gap: 2px; color: var(--text-2); font-size: 12px; }
+.ifs-zoom { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-2); }
+.ifs-zoom input[type=range] { width: 100px; accent-color: var(--primary); }
+
+.ifs-page-body { padding: 0 16px 24px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.ifs-page-header + .ifs-page-body { padding-top: 0; }
+.ifs-page-body.flush { padding: 0; gap: 0; }
+
+/* =====================================================================
+   Command bar & buttons
+   ===================================================================== */
+.ifs-commandbar {
+  display: flex; align-items: center; gap: 2px; flex-wrap: wrap; min-height: 38px; padding: 4px 6px;
+}
+.ifs-page-header .ifs-commandbar { background: var(--surface); border-radius: var(--radius-lg); margin-bottom: 10px; }
+.ifs-commandbar .sep { width: 1px; height: 20px; background: var(--border); margin: 0 6px; }
+.ifs-commandbar .spacer { flex: 1; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px;
+  border-radius: 2px; border: 1px solid transparent; background: transparent;
+  color: var(--text); cursor: pointer; white-space: nowrap; font-size: 12.5px;
+}
+.btn:hover { background: var(--surface-2); text-decoration: none; }
+.btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.btn svg.i { color: var(--text-2); width: 15px; height: 15px; }
+.btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn.primary svg.i { color: #fff; }
+.btn.primary:hover { background: var(--primary-hover); }
+.btn.secondary { background: var(--surface); border-color: var(--border-strong); }
+.btn.secondary:hover { border-color: var(--text-3); }
+.btn.danger svg.i { color: var(--danger); }
+.btn.icon { width: 28px; padding: 0; justify-content: center; }
+.btn.sm { height: 24px; padding: 0 8px; font-size: 12px; }
+.btn.icon.sm { width: 24px; }
+.btn[disabled], .btn.disabled { color: var(--text-3); pointer-events: none; }
+.btn[disabled] svg.i, .btn.disabled svg.i { color: var(--border-strong); }
+.btn.primary[disabled] { background: var(--border-strong); border-color: var(--border-strong); color: #fff; }
+.btn .caret { width: 12px; height: 12px; margin-left: -2px; }
+
+/* Dropdown menu */
+.ifs-menu-wrap { position: relative; display: inline-flex; }
+.ifs-menu {
+  position: absolute; top: calc(100% + 4px); left: 0; z-index: 60; min-width: 200px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow-2); padding: 4px 0; display: none;
+}
+.ifs-menu.right { left: auto; right: 0; }
+.ifs-menu.open { display: block; }
+.ifs-menu a, .ifs-menu button {
+  display: flex; align-items: center; gap: 10px; width: 100%; padding: 7px 14px; border: 0; background: none;
+  text-align: left; color: var(--text); cursor: pointer; font-size: 12.5px;
+}
+.ifs-menu a:hover, .ifs-menu button:hover { background: var(--primary-50); text-decoration: none; }
+.ifs-menu svg.i { color: var(--text-2); }
+.ifs-menu hr { border: 0; border-top: 1px solid var(--border); margin: 4px 0; }
+.ifs-menu .hdr { padding: 6px 14px 2px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--text-3); font-weight: 600; }
+
+/* =====================================================================
+   Cards / groups
+   ===================================================================== */
+.ifs-card { background: var(--surface); border-radius: var(--radius-lg); }
+.ifs-card-header { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.ifs-card-header h2, .ifs-card-header h3 { font-size: 13px; }
+.ifs-card-header .spacer { flex: 1; }
+.ifs-card-body { padding: 12px; }
+
+/* Group (field group / collapsible section) */
+.ifs-group { background: var(--surface); border-radius: var(--radius-lg); }
+.ifs-group + .ifs-group { margin-top: 10px; }
+.ifs-group-header {
+  display: flex; align-items: center; gap: 8px; padding: 9px 8px 9px 12px; cursor: pointer; user-select: none;
+  font-weight: 600; font-size: 12.5px;
+}
+.ifs-group-header .chev { order: 2; margin-left: auto; color: var(--text-2); transition: transform .15s; transform: rotate(180deg); }
+.ifs-group.collapsed .ifs-group-header .chev { transform: none; }
+.ifs-group-body { padding: 4px 12px 12px; }
+.ifs-group.collapsed .ifs-group-body { display: none; }
+.ifs-group.plain .ifs-group-body { padding-top: 12px; }
+
+/* =====================================================================
+   Fields (read-only & edit)
+   ===================================================================== */
+.ifs-fields { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px 12px; }
+.ifs-fields.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ifs-fields.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ifs-fields.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ifs-fields.cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.ifs-fields.cols-8 { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.ifs-field.span-2 { grid-column: span 2; }
+.ifs-field.span-3 { grid-column: span 3; }
+.ifs-field.span-all { grid-column: 1 / -1; }
+.ifs-field { min-width: 0; }
+.ifs-field > label { display: block; font-size: 11px; color: var(--text-2); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ifs-field.required > label::after { content: " *"; color: #d93a4f; }
+.ifs-field .ifs-field-value { min-height: 27px; display: flex; align-items: center; flex-wrap: wrap; gap: 0 4px; font-size: 12.5px; overflow-wrap: anywhere; }
+.ifs-field .ifs-field-value:empty::before { content: ""; }
+.ifs-field .ifs-field-value .desc { color: var(--text-2); }
+.ifs-record.is-editing .ifs-field .ifs-field-value { display: block; }
+.ifs-field .hint { font-size: 11px; color: var(--text-3); margin-top: 3px; }
+.ifs-field.invalid .hint { color: var(--danger); }
+.ifs-field.invalid .ifs-input { border-color: var(--danger); }
+
+.ifs-input, .ifs-select, .ifs-textarea {
+  width: 100%; height: 27px; padding: 0 7px; border: 1px solid var(--input-border); border-radius: 2px;
+  background: var(--surface); outline: none; font-size: 12.5px;
+}
+.ifs-select {
+  appearance: none; -webkit-appearance: none; padding-right: 26px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0h10L5 6z' fill='%2324242c'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 9px center;
+}
+.ifs-textarea { height: auto; min-height: 60px; padding: 5px 7px; resize: vertical; }
+.ifs-input:hover, .ifs-select:hover, .ifs-textarea:hover { border-color: var(--text-2); }
+.ifs-input:focus, .ifs-select:focus, .ifs-textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+.ifs-input[readonly] { background: var(--surface-2); color: var(--text-2); }
+/* Required + empty = pink, like IFS Cloud */
+.ifs-field.required.is-empty .ifs-input, .ifs-field.required.is-empty .ifs-select, .ifs-field.required.is-empty .ifs-textarea,
+.ifs-input.req-empty, .ifs-select.req-empty { background-color: var(--required-bg); }
+.ifs-input-icon { position: relative; display: inline-block; }
+.ifs-input-icon .ifs-input { padding-right: 28px; }
+.ifs-input-icon.left .ifs-input { padding-left: 28px; padding-right: 7px; }
+.ifs-input-icon > svg.i, .ifs-input-icon > button {
+  position: absolute; right: 1px; top: 1px; height: 25px; width: 26px; padding: 5px; border: 0; background: none;
+  color: var(--text-2); cursor: pointer; border-radius: 0 2px 2px 0;
+}
+.ifs-input-icon > button svg.i { width: 14px; height: 14px; }
+.ifs-input-icon.left > svg.i { left: 1px; right: auto; padding: 6px; }
+.ifs-input-icon > button:hover { color: var(--primary); }
+.ifs-field .ifs-input-icon { display: block; }
+
+.ifs-check { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+.ifs-check input { width: 14px; height: 14px; accent-color: var(--primary); margin: 0; }
+.ifs-toggle { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; min-height: 27px; }
+.ifs-toggle input { appearance: none; width: 26px; height: 14px; border-radius: 7px; background: #8c8c96; position: relative; cursor: pointer; transition: background .15s; margin: 0; }
+.ifs-toggle input::after { content: ""; position: absolute; top: 2px; left: 2px; width: 10px; height: 10px; border-radius: 50%; background: #fff; transition: left .15s; }
+.ifs-toggle input:checked { background: var(--primary); }
+.ifs-toggle input:checked::after { left: 14px; }
+
+.ifs-radio-group { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; min-height: 27px; }
+.ifs-radio-group label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.ifs-radio-group input { accent-color: var(--primary); margin: 0; }
+
+.ifs-record:not(.is-editing) .ifs-edit-banner { display: none; }
+
+/* =====================================================================
+   Badges, state indicator, selector, progress
+   ===================================================================== */
+.badge {
+  display: inline-flex; align-items: center; gap: 5px; height: 19px; padding: 0 8px; border-radius: 10px;
+  font-size: 11px; font-weight: 600; white-space: nowrap;
+  background: var(--neutral-bg); color: var(--neutral);
+}
+.badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.badge.plain::before { display: none; }
+.badge.success { background: var(--success-bg); color: var(--success); }
+.badge.warning { background: var(--warning-bg); color: var(--warning); }
+.badge.danger  { background: var(--danger-bg);  color: var(--danger); }
+.badge.info    { background: var(--info-bg);    color: var(--info); }
+.badge.primary { background: #ece3f4; color: var(--brand-2); }
+
+/* State indicator (Aurena): current state name + progress bar, top-right of the page.
+   Click opens the list of all states. Rendered by JS from data-states/data-current. */
+.ifs-state-indicator { --si: var(--primary); }
+.ifs-state-indicator.info { --si: var(--info); }
+.ifs-state-indicator.success { --si: var(--success); }
+.ifs-state-indicator.warning { --si: var(--c4); }
+.ifs-state-indicator.danger { --si: var(--danger); }
+.ifs-state-indicator.neutral { --si: var(--neutral); }
+.ifs-state-indicator.brand { --si: var(--brand-2); }
+.ifs-state-indicator .si-btn {
+  display: flex; flex-direction: column; align-items: stretch; gap: 5px; min-width: 170px; padding: 4px 6px;
+  border: 0; background: none; cursor: pointer; border-radius: var(--radius); text-align: left;
+}
+.ifs-state-indicator .si-btn:hover { background: var(--surface); }
+.ifs-state-indicator .si-label { display: flex; align-items: center; gap: 4px; font-weight: 600; font-size: 13px; color: var(--si); }
+.ifs-state-indicator .si-label svg.i { width: 14px; height: 14px; color: var(--text-3); }
+.ifs-state-indicator .si-bar { display: block; height: 5px; border-radius: 3px; background: #dcdbe2; overflow: hidden; }
+.ifs-state-indicator .si-bar > span { display: block; height: 100%; background: var(--si); border-radius: 3px; }
+.ifs-state-indicator .si-menu { min-width: 200px; }
+.ifs-state-indicator .si-item { display: flex; align-items: center; gap: 10px; padding: 6px 14px; color: var(--text-3); }
+.ifs-state-indicator .si-item.done { color: var(--text); }
+.ifs-state-indicator .si-item.current { color: var(--si); font-weight: 600; background: var(--surface-2); }
+.ifs-state-indicator .si-dot { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--border-strong); }
+.ifs-state-indicator .si-item.done .si-dot, .ifs-state-indicator .si-item.current .si-dot { border-color: var(--si); background: var(--si); }
+
+/* Record selector (Aurena): current record in the title row, dropdown to switch */
+.ifs-selector .sel-btn {
+  display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 8px 0 10px; max-width: 420px;
+  border: 1px solid transparent; border-radius: var(--radius); background: none; cursor: pointer;
+  font-size: 15px; color: var(--text-2);
+}
+.ifs-selector .sel-btn:hover { border-color: var(--border-strong); background: var(--surface); }
+.ifs-selector .sel-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ifs-selector .ifs-menu { min-width: 300px; }
+.ifs-selector .ifs-menu .current { background: var(--primary-50); color: var(--primary); font-weight: 600; }
+
+.ifs-progress { height: 6px; border-radius: 3px; background: var(--neutral-bg); overflow: hidden; }
+.ifs-progress > div { height: 100%; background: var(--primary); border-radius: 3px; }
+.ifs-progress.success > div { background: var(--success); }
+.ifs-progress.warning > div { background: var(--c4); }
+.ifs-progress.danger > div { background: var(--danger); }
+.ifs-progress.brand > div { background: var(--brand-2); }
+
+/* Message bars */
+.ifs-alert { display: flex; gap: 10px; align-items: flex-start; padding: 9px 12px; border-radius: var(--radius); border: 1px solid; font-size: 12.5px; }
+.ifs-alert svg.i { margin-top: 1px; }
+.ifs-alert .close { margin-left: auto; border: 0; background: none; cursor: pointer; color: inherit; opacity: .7; padding: 0; }
+.ifs-alert.info    { background: var(--info-bg);    border-color: #b9d3f0; color: #164f8f; }
+.ifs-alert.success { background: var(--success-bg); border-color: #b5ddc6; color: #135c32; }
+.ifs-alert.warning { background: var(--warning-bg); border-color: #f0d29b; color: #7c4a00; }
+.ifs-alert.danger  { background: var(--danger-bg);  border-color: #efb9bf; color: #8f1a28; }
+
+/* =====================================================================
+   Tabs
+   ===================================================================== */
+.ifs-tabs { display: flex; gap: 2px; background: var(--surface); border-radius: var(--radius-lg) var(--radius-lg) 0 0; border-bottom: 1px solid var(--border); overflow-x: auto; padding: 0 6px; }
+.ifs-tab {
+  border: 0; background: none; padding: 9px 12px 8px; cursor: pointer; color: var(--text-2); font-size: 12.5px;
+  border-bottom: 2px solid transparent; white-space: nowrap; display: inline-flex; gap: 6px; align-items: center;
+}
+.ifs-tab:hover { color: var(--text); }
+.ifs-tab.active { color: var(--text); border-bottom-color: var(--primary); font-weight: 600; }
+.ifs-tab .count { font-size: 11px; background: var(--neutral-bg); color: var(--text-2); border-radius: 9px; padding: 0 6px; font-weight: 400; }
+.ifs-tab-panel { display: none; }
+.ifs-tab-panel.active { display: block; }
+
+/* =====================================================================
+   Tables (lists)
+   ===================================================================== */
+.ifs-list { background: var(--surface); border-radius: var(--radius-lg); display: flex; flex-direction: column; min-width: 0; }
+.ifs-list-toolbar { display: flex; align-items: center; gap: 2px; padding: 4px 6px; border-bottom: 1px solid var(--border); flex-wrap: wrap; min-height: 38px; }
+.ifs-list-toolbar .title { font-weight: 600; font-size: 13px; padding: 0 6px; }
+.ifs-list-toolbar .sep { width: 1px; height: 18px; background: var(--border); margin: 0 4px; }
+.ifs-list-toolbar .spacer { flex: 1; }
+.ifs-list-toolbar .ifs-input-icon .ifs-input { height: 26px; width: 200px; border-color: var(--border-strong); }
+.ifs-list-toolbar .ifs-input-icon > svg.i { height: 24px; width: 26px; padding: 5px; }
+.ifs-table-wrap { overflow: auto; }
+table.ifs-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12.5px; }
+.ifs-table th, .ifs-table td { padding: 0 10px; height: 32px; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--border); }
+.ifs-table th {
+  position: sticky; top: 0; z-index: 1; background: var(--surface); font-weight: 600; font-size: 12px; color: var(--text-2);
+  cursor: pointer; user-select: none; height: 32px; border-bottom: 1px solid var(--border-strong);
+}
+.ifs-table th:hover { color: var(--text); }
+.ifs-table th .sort { display: inline-block; width: 10px; color: var(--primary); font-size: 9px; }
+.ifs-table th.num, .ifs-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.ifs-table th.sel, .ifs-table td.sel { width: 34px; padding: 0 0 0 12px; cursor: default; }
+.ifs-table td.sel input, .ifs-table th.sel input { accent-color: var(--primary); width: 14px; height: 14px; margin: 0; vertical-align: middle; }
+.ifs-table td.act { width: 36px; padding: 0 4px; }
+.ifs-table tbody tr:hover td { background: #f6f8fd; }
+.ifs-table tbody tr.selected td { background: var(--primary-50); }
+.ifs-table tbody tr.selected td:first-child { box-shadow: inset 3px 0 0 var(--primary); }
+.ifs-table td .muted { color: var(--text-3); }
+.ifs-table tfoot td { font-weight: 600; background: var(--surface-2); border-bottom: 0; }
+.ifs-table.compact th, .ifs-table.compact td { height: 28px; }
+.ifs-table input.cell { height: 24px; width: 100%; min-width: 80px; border: 1px solid var(--input-border); border-radius: 2px; padding: 0 6px; font-size: 12.5px; }
+.ifs-list-footer { display: flex; align-items: center; gap: 12px; padding: 6px 12px; color: var(--text-2); font-size: 12px; border-top: 1px solid var(--border); }
+.ifs-list-footer .spacer { flex: 1; }
+
+/* Search panel / filter chips */
+.ifs-search-panel { background: var(--surface); border-radius: var(--radius-lg); padding: 10px 12px; }
+.ifs-search-panel .ifs-fields { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+.ifs-search-panel .actions { display: flex; gap: 6px; margin-top: 10px; align-items: center; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 6px 0 10px; border-radius: 12px;
+  background: var(--primary-50); border: 1px solid var(--primary-200); color: var(--primary); font-size: 12px;
+}
+.chip b { font-weight: 600; }
+.chip button { border: 0; background: none; color: inherit; cursor: pointer; padding: 0; display: inline-flex; }
+.chip button svg.i { width: 13px; height: 13px; }
+
+/* Empty state */
+.ifs-empty { text-align: center; padding: 40px 20px; color: var(--text-3); }
+.ifs-empty svg.i { width: 40px; height: 40px; stroke-width: 1.2; margin-bottom: 8px; }
+.ifs-empty b { display: block; color: var(--text-2); font-size: 14px; margin-bottom: 4px; }
+
+/* =====================================================================
+   Record header (detail pages)
+   ===================================================================== */
+.ifs-record-header { background: var(--surface); border-radius: var(--radius-lg); padding: 12px; display: flex; gap: 20px; flex-wrap: wrap; }
+.ifs-record-header .main { flex: 1; min-width: 280px; }
+.ifs-record-header .side { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.ifs-kpis { display: flex; gap: 28px; flex-wrap: wrap; }
+.ifs-kpi .lbl { font-size: 11px; color: var(--text-2); }
+.ifs-kpi .val { font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.ifs-kpi .val small { font-size: 12px; color: var(--text-2); font-weight: 400; }
+
+/* =====================================================================
+   Lobby (IFS Cloud style tiles)
+   Grid of ~160px square cells. Size tiles with .w-2/.w-3/.w-4/.w-6/.w-8/.w-12 and .h-2/.h-3.
+   Colours: default white, .purple (brand), .light (light blue).
+   ===================================================================== */
+.ifs-lobby { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); grid-auto-rows: minmax(156px, auto); gap: 12px; grid-auto-flow: dense; }
+.ifs-lobby > .w-2 { grid-column: span 2; }
+.ifs-lobby > .w-3 { grid-column: span 3; }
+.ifs-lobby > .w-4 { grid-column: span 4; }
+.ifs-lobby > .w-6 { grid-column: span 6; }
+.ifs-lobby > .w-8 { grid-column: span 8; }
+.ifs-lobby > .w-12 { grid-column: 1 / -1; }
+.ifs-lobby > .h-2 { grid-row: span 2; }
+.ifs-lobby > .h-3 { grid-row: span 3; }
+.ifs-tile {
+  background: var(--surface); border-radius: var(--radius-lg); color: var(--text);
+  display: flex; flex-direction: column; overflow: hidden; position: relative; min-width: 0;
+}
+a.ifs-tile:hover { text-decoration: none; filter: brightness(1.04); box-shadow: 0 2px 10px rgba(30,10,60,.12); }
+.ifs-tile-header { display: flex; align-items: flex-start; gap: 8px; padding: 12px 12px 0; font-weight: 600; font-size: 13.5px; color: #3a3a44; }
+.ifs-tile-header .spacer { flex: 1; }
+.ifs-tile-body { padding: 8px 12px 12px; flex: 1; display: flex; flex-direction: column; }
+.ifs-tile .tile-menu {
+  position: absolute; top: 38px; right: 12px; width: 18px; height: 16px; border-radius: 2px; border: 0; cursor: pointer;
+  background: #8a8a95; color: #fff; display: flex; align-items: center; justify-content: center; padding: 0;
+}
+.ifs-tile .tile-menu svg.i { width: 12px; height: 12px; stroke-width: 2.4; }
+
+/* Counter tile: title top-left, big number centred, caption at the bottom */
+.ifs-tile.counter { text-align: center; }
+.ifs-tile.counter .ifs-tile-header { text-align: left; }
+.ifs-tile.counter .ifs-tile-body { align-items: center; justify-content: center; padding-bottom: 10px; }
+.ifs-counter { font-size: 34px; font-weight: 500; line-height: 1.1; color: #24242c; font-variant-numeric: tabular-nums; margin: auto 0; }
+.ifs-tile .caption { font-size: 12px; color: var(--text-2); margin-top: auto; }
+.ifs-counter.success { color: var(--success); }
+.ifs-counter.warning { color: var(--warning); }
+.ifs-counter.danger { color: var(--danger); }
+.ifs-tile .trend { font-size: 12px; color: var(--text-2); margin-top: auto; display: flex; align-items: center; gap: 4px; justify-content: center; }
+.ifs-tile .trend .up { color: var(--success); font-weight: 600; }
+.ifs-tile .trend .down { color: var(--danger); font-weight: 600; }
+
+.ifs-tile.purple, .ifs-tile.accent { background: var(--brand); color: #fff; }
+.ifs-tile.purple .ifs-tile-header, .ifs-tile.accent .ifs-tile-header { color: #fff; }
+.ifs-tile.purple .ifs-counter, .ifs-tile.accent .ifs-counter, .ifs-tile.purple .caption, .ifs-tile.accent .caption, .ifs-tile.purple .trend { color: #fff; }
+.ifs-tile.light { background: var(--tile-light); }
+.ifs-tile.light .ifs-tile-header { color: #4a4a55; }
+.ifs-tile.light .ifs-counter { color: var(--tile-light-fg); }
+.ifs-tile.light .caption { color: #4a4a55; }
+
+/* Key/value list tile (e.g. "Order Processing") */
+.ifs-kv { list-style: none; margin: 18px 0 0; padding: 0; font-size: 11.5px; }
+.ifs-kv li { display: flex; justify-content: space-between; gap: 10px; padding: 2px 0; }
+.ifs-kv li.gap { margin-top: 14px; }
+.ifs-kv a { color: inherit; }
+
+/* Line chart (inline SVG) */
+.ifs-linechart { width: 100%; height: 118px; display: block; }
+.ifs-linechart text { font-size: 7px; fill: var(--text-2); font-family: var(--font); }
+.ifs-linechart .grid { stroke: #e5e4ea; stroke-width: .6; }
+.ifs-linechart .axis { stroke: #b9b8c0; stroke-width: .8; }
+
+/* Horizontal bar chart */
+.ifs-hbars { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.ifs-hbars .r { display: grid; grid-template-columns: 70px 1fr 34px; align-items: center; gap: 8px; font-size: 11px; color: var(--text-2); }
+.ifs-hbars .r > div { height: 22px; background: var(--c1); }
+.ifs-hbars .r > div.alt { background: var(--c2); }
+
+/* Vertical bar chart (CSS) */
+.ifs-bars { display: flex; align-items: flex-end; gap: 10px; height: 170px; padding-top: 8px; }
+.ifs-bars .bar { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 4px; }
+.ifs-bars .bar > div { width: 100%; max-width: 34px; background: var(--c5); position: relative; }
+.ifs-bars .bar > div.alt { background: var(--c2); }
+.ifs-bars .bar > div:hover { filter: brightness(1.15); }
+.ifs-bars .bar > div[data-v]:hover::after {
+  content: attr(data-v); position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%);
+  background: var(--text); color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 3px; white-space: nowrap;
+}
+.ifs-bars .bar span { font-size: 10.5px; color: var(--text-3); }
+.ifs-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11.5px; color: var(--text-2); font-weight: 400; }
+.ifs-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+
+/* Donut (conic-gradient) */
+.ifs-donut-wrap { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.ifs-donut { width: 120px; height: 120px; border-radius: 50%; position: relative; flex: none; }
+.ifs-donut::after { content: ""; position: absolute; inset: 20px; border-radius: 50%; background: var(--surface); }
+.ifs-donut .center { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ifs-donut .center b { font-size: 21px; font-weight: 600; }
+.ifs-donut .center span { font-size: 11px; color: var(--text-3); }
+.ifs-donut-wrap .ifs-legend { flex-direction: column; gap: 6px; }
+
+.ifs-quicklinks { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.ifs-quicklinks a { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: var(--radius); background: var(--surface-2); color: var(--text); }
+.ifs-quicklinks a:hover { background: var(--primary-50); color: var(--primary); text-decoration: none; }
+.ifs-quicklinks svg.i { color: var(--brand-2); }
+
+/* Simple list inside tiles */
+.ifs-mini-list { list-style: none; margin: 0; padding: 0; }
+.ifs-mini-list li { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.ifs-mini-list li:last-child { border-bottom: 0; }
+.ifs-mini-list .grow { flex: 1; min-width: 0; }
+.ifs-mini-list .grow small { display: block; color: var(--text-3); }
+
+/* =====================================================================
+   Assistant (wizard)
+   Stepper card / content cards / footer card, like IFS Cloud assistants.
+   ===================================================================== */
+.ifs-assistant { display: flex; flex-direction: column; gap: 10px; }
+.ifs-steps { display: flex; align-items: center; gap: 4px; padding: 14px 12px; background: var(--surface); border-radius: var(--radius-lg); overflow-x: auto; }
+/* Step = [line] (circle) — label   (line before the circle on all but the first step) */
+.ifs-step { display: flex; align-items: center; color: var(--text-2); cursor: pointer; white-space: nowrap; }
+.ifs-step:not(:first-child)::before { content: ""; width: 14px; height: 2px; background: #8a8a95; margin: 0 2px 0 6px; }
+.ifs-step .n { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #8a8a95; background: var(--surface); font-size: 0; flex: none; }
+.ifs-step .t { display: flex; align-items: center; font-style: italic; font-size: 12.5px; }
+.ifs-step .t::before { content: ""; width: 14px; height: 2px; background: #8a8a95; margin: 0 6px 0 0; }
+.ifs-step.active .n { background: #4f9ad6; border-color: #4f9ad6; }
+.ifs-step.active .t { font-style: normal; font-weight: 600; color: var(--text); }
+.ifs-step.active .t::before { background: var(--primary); }
+.ifs-step.done .n { background: #cfe3f5; border-color: #4f9ad6; }
+.ifs-step.done .t { font-style: normal; color: var(--text); }
+.ifs-assistant-body .step-panel { display: none; flex-direction: column; gap: 10px; }
+.ifs-assistant-body .step-panel.active { display: flex; }
+.ifs-assistant-body h2 { font-size: 14px; }
+.ifs-assistant-body .lead { color: var(--text-2); margin: 0; }
+.ifs-assistant-footer { display: flex; gap: 2px; padding: 6px; background: var(--surface); border-radius: var(--radius-lg); align-items: center; }
+.ifs-assistant-footer .spacer { flex: 1; }
+.ifs-assistant-footer .btn svg.i { width: 11px; height: 11px; fill: currentColor; }
+
+/* =====================================================================
+   Dialogs, side panel, toasts
+   ===================================================================== */
+dialog.ifs-dialog {
+  border: 0; padding: 0; border-radius: var(--radius-lg); box-shadow: var(--shadow-2); width: min(560px, calc(100vw - 32px));
+  color: var(--text); background: var(--surface);
+}
+dialog.ifs-dialog.lg { width: min(860px, calc(100vw - 32px)); }
+dialog.ifs-dialog::backdrop { background: rgba(15,8,30,.4); }
+.ifs-dialog-header { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.ifs-dialog-header h2 { font-size: 15px; font-weight: 500; flex: 1; }
+.ifs-dialog-body { padding: 16px; max-height: 70vh; overflow: auto; }
+.ifs-dialog-footer { display: flex; justify-content: flex-end; gap: 6px; padding: 10px 16px; border-top: 1px solid var(--border); }
+.ifs-dialog.confirm .ifs-dialog-body { display: flex; gap: 14px; }
+.ifs-dialog.confirm .ifs-dialog-body svg.i { width: 28px; height: 28px; flex: none; }
+
+.ifs-panel {
+  position: fixed; top: var(--header-h); right: 0; bottom: 0; width: 380px; max-width: 100vw; z-index: 47;
+  background: var(--surface); box-shadow: var(--shadow-2); transform: translateX(102%); transition: transform .18s ease-out;
+  display: flex; flex-direction: column;
+}
+.ifs-panel.open { transform: none; }
+.ifs-panel-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.ifs-panel-header h2 { font-size: 14px; flex: 1; }
+.ifs-panel-body { flex: 1; overflow: auto; padding: 14px; }
+
+.ifs-toasts { position: fixed; right: 16px; bottom: 16px; z-index: 100; display: flex; flex-direction: column; gap: 8px; }
+.ifs-toast {
+  display: flex; align-items: center; gap: 10px; min-width: 280px; max-width: 420px; padding: 10px 14px;
+  background: #2b2438; color: #fff; border-radius: var(--radius); box-shadow: var(--shadow-2);
+  border-left: 4px solid var(--c3); animation: toastIn .2s ease-out;
+}
+.ifs-toast.info { border-left-color: var(--c2); }
+.ifs-toast.warning { border-left-color: var(--c4); }
+.ifs-toast.danger { border-left-color: var(--c1); }
+@keyframes toastIn { from { transform: translateY(10px); opacity: 0; } }
+
+/* Timeline / history */
+.ifs-timeline { list-style: none; margin: 0; padding: 0 0 0 4px; }
+.ifs-timeline li { position: relative; padding: 0 0 16px 22px; border-left: 2px solid var(--border); }
+.ifs-timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.ifs-timeline li::before { content: ""; position: absolute; left: -6px; top: 3px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--primary); }
+.ifs-timeline time { display: block; font-size: 11px; color: var(--text-3); }
+
+/* Attachments */
+.ifs-file { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius); }
+.ifs-file + .ifs-file { margin-top: 6px; }
+.ifs-file .ext { width: 32px; height: 36px; border-radius: 3px; background: var(--primary-100); color: var(--primary); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; text-transform: uppercase; }
+.ifs-file .ext.pdf { background: var(--danger-bg); color: var(--danger); }
+.ifs-file .ext.xls { background: var(--success-bg); color: var(--success); }
+.ifs-file .grow { flex: 1; min-width: 0; }
+.ifs-file small { display: block; color: var(--text-3); }
+.ifs-dropzone { border: 2px dashed var(--border-strong); border-radius: var(--radius); padding: 22px; text-align: center; color: var(--text-2); margin-top: 10px; }
+
+/* Utilities */
+.row { display: flex; gap: 16px; flex-wrap: wrap; }
+.row > * { min-width: 0; }
+.grow { flex: 1; }
+.muted { color: var(--text-3); }
+.text-2 { color: var(--text-2); }
+.num { font-variant-numeric: tabular-nums; }
+.mt-0 { margin-top: 0; } .mt-8 { margin-top: 8px; } .mt-16 { margin-top: 16px; }
+.split { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 10px; }
+.split-equal { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.hidden { display: none !important; }
+
+/* Mockup annotation – numbered callouts for client walkthroughs */
+.note-pin {
+  display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%;
+  background: #ff5a1f; color: #fff; font-size: 11px; font-weight: 700; box-shadow: 0 0 0 3px rgba(255,90,31,.25);
+  vertical-align: middle; cursor: help;
+}
+body.hide-notes .note-pin, body.hide-notes .note-box { display: none !important; }
+.note-box { border: 2px dashed #ff5a1f; background: #fff5f0; color: #7a2a00; border-radius: var(--radius); padding: 8px 12px; font-size: 12px; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .split { grid-template-columns: 1fr; }
+  .ifs-fields.cols-6, .ifs-fields.cols-8 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  body.nav-pinned .ifs-page { margin-left: var(--rail-w); }
+  body.nav-pinned .ifs-nav { transform: translateX(calc(-100% - var(--rail-w))); box-shadow: var(--shadow-2); z-index: 45; }
+  body.nav-pinned.nav-open .ifs-nav { transform: none; }
+  body.nav-pinned.nav-open .ifs-nav-backdrop { display: block; opacity: 1; pointer-events: auto; }
+  .ifs-nav .pin { display: none; }
+  .ifs-lobby > .w-4, .ifs-lobby > .w-6, .ifs-lobby > .w-8 { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  .ifs-hdr-search, .ifs-user .meta, .ifs-brand .app { display: none; }
+  .ifs-lobby > .w-2, .ifs-lobby > .w-3 { grid-column: 1 / -1; }
+  .ifs-fields.cols-2, .ifs-fields.cols-3, .ifs-fields.cols-4, .ifs-fields.cols-6, .ifs-fields.cols-8 { grid-template-columns: 1fr; }
+  .ifs-field.span-2, .ifs-field.span-3 { grid-column: auto; }
+  .split-equal { grid-template-columns: 1fr; }
+  .ifs-page-header, .ifs-page-body { padding-left: 10px; padding-right: 10px; }
+  .ifs-breadcrumb { margin: 0 -10px; }
+}
+@media print {
+  .ifs-header, .ifs-rail, .ifs-nav, .ifs-nav-backdrop, .ifs-toasts { display: none !important; }
+  .ifs-page { margin-left: 0 !important; }
+  body { background: #fff; }
+}

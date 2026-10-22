@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Customer Order</title>
+  <link rel="stylesheet" href="../../assets/ifs-cloud.css">
+  <script src="../../assets/ifs-cloud.js"></script>
+</head>
+<body data-nav="assistant">
+<main class="ifs-page">
+
+  <div class="ifs-page-header">
+    <div class="ifs-breadcrumb"><a href="lobby.html"><i data-icon="home"></i></a><i data-icon="chevron-right"></i><span>Sales</span><i data-icon="chevron-right"></i><span>Order</span><i data-icon="chevron-right"></i><span>Create Customer Order</span></div>
+    <div class="ifs-title-row"><h1>Create Customer Order</h1></div>
+  </div>
+
+  <div class="ifs-page-body">
+    <div class="ifs-assistant" data-assistant>
+
+      <div class="ifs-steps">
+        <div class="ifs-step"><span class="n"></span><span class="t">Header Information</span></div>
+        <div class="ifs-step"><span class="n"></span><span class="t">Line Information</span></div>
+        <div class="ifs-step"><span class="n"></span><span class="t">Summary</span></div>
+      </div>
+
+      <div class="ifs-assistant-body">
+
+        <!-- Step 1: Header Information -->
+        <div class="step-panel">
+          <div class="ifs-group plain">
+            <div class="ifs-group-body">
+              <div class="ifs-fields cols-8">
+                <div class="ifs-field required"><label>Company</label><select class="ifs-select"><option>10</option><option>20</option></select></div>
+                <div class="ifs-field required"><label>Order Date</label><div class="ifs-input-icon"><input class="ifs-input" value="2026-10-21"><button tabindex="-1"><i data-icon="calendar"></i></button></div></div>
+                <div class="ifs-field"><label>Order No</label><div class="ifs-field-value"></div></div>
+                <div class="ifs-field required"><label>Site</label><select class="ifs-select"><option>WRO</option><option>KRK</option></select></div>
+                <div class="ifs-field required"><label>Order Type</label><select class="ifs-select"><option>NO</option><option>SEO</option></select></div>
+                <div class="ifs-field"><label>Currency</label><div class="ifs-field-value">EUR</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ifs-group plain">
+            <div class="ifs-group-body">
+              <div class="ifs-fields cols-6">
+                <div class="ifs-field required span-2"><label>Customer</label><div class="ifs-input-icon"><input class="ifs-input"><button data-open-dialog="ifs-lov" title="List of values"><i data-icon="lov"></i></button></div></div>
+                <div class="ifs-field"><label>Customer PO No</label><input class="ifs-input"></div>
+                <div class="ifs-field"><label>Quotation No</label><div class="ifs-input-icon"><input class="ifs-input"><button><i data-icon="lov"></i></button></div></div>
+                <div class="ifs-field"><label>Project ID</label><select class="ifs-select"><option></option><option>PRJ-100</option></select></div>
+                <div class="ifs-field required"><label>Coordinator</label><select class="ifs-select"><option>PNOWAK</option><option>AKOWALSKA</option></select></div>
+
+                <div class="ifs-field required"><label>Wanted Delivery Date</label><div class="ifs-input-icon"><input class="ifs-input" value="2026-11-04"><button tabindex="-1"><i data-icon="calendar"></i></button></div></div>
+                <div class="ifs-field"><label>Planned Delivery Date</label><div class="ifs-input-icon"><input class="ifs-input"><button tabindex="-1"><i data-icon="calendar"></i></button></div></div>
+                <div class="ifs-field required"><label>Delivery Terms</label><select class="ifs-select"><option></option><option>DAP</option><option>EXW</option><option>FCA</option></select></div>
+                <div class="ifs-field required"><label>Ship Via</label><select class="ifs-select"><option></option><option>TRUCK</option><option>COURIER</option></select></div>
+                <div class="ifs-field required span-2"><label>Payment Terms</label><select class="ifs-select"><option></option><option>30 – 30 days net</option><option>14 – 14 days net</option></select></div>
+
+                <div class="ifs-field"><label>Priority Order</label><label class="ifs-toggle"><input type="checkbox"></label></div>
+                <div class="ifs-field"><label>Net Amount</label><div class="ifs-field-value"></div></div>
+                <div class="ifs-field"><label>Tax Amount</label><div class="ifs-field-value"></div></div>
+                <div class="ifs-field"><label>Gross Amount</label><div class="ifs-field-value"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ifs-group collapsed">
+            <div class="ifs-group-header"><i data-icon="chevron-down" class="chev"></i>More Information</div>
+            <div class="ifs-group-body">
+              <div class="ifs-fields cols-6">
+                <div class="ifs-field"><label>Salesperson</label><div class="ifs-input-icon"><input class="ifs-input" value="MZIELINSKA"><button><i data-icon="lov"></i></button></div></div>
+                <div class="ifs-field"><label>Language</label><select class="ifs-select"><option>EN</option><option>DE</option><option>PL</option></select></div>
+                <div class="ifs-field"><label>Region</label><input class="ifs-input" value="DACH"></div>
+                <div class="ifs-field span-3"><label>Internal Note</label><input class="ifs-input"></div>
+              </div>
+            </div>
+          </div>
+          <div class="ifs-group collapsed">
+            <div class="ifs-group-header"><i data-icon="chevron-down" class="chev"></i>Delivery Address</div>
+            <div class="ifs-group-body">
+              <div class="ifs-fields cols-6">
+                <div class="ifs-field"><label>Address ID</label><div class="ifs-input-icon"><input class="ifs-input" value="2"><button><i data-icon="lov"></i></button></div></div>
+                <div class="ifs-field span-3"><label>Address</label><input class="ifs-input" value="Industriestraße 14, 81379 München"></div>
+                <div class="ifs-field"><label>Country</label><select class="ifs-select"><option>DE</option><option>PL</option></select></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Line Information -->
+        <div class="step-panel">
+          <div class="ifs-list">
+            <div class="ifs-list-toolbar"><button class="btn sm"><i data-icon="plus"></i>New</button><button class="btn sm"><i data-icon="upload"></i>Import from Excel</button></div>
+            <table class="ifs-table" data-sortable="false">
+              <thead><tr><th>Sales Part</th><th>Description</th><th class="num">Quantity</th><th>UoM</th><th class="num">Price</th><th class="num">Net Amount</th><th class="act"></th></tr></thead>
+              <tbody>
+                <tr><td><input class="cell" value="HYD-PMP-200"></td><td>Hydraulic pump 200 bar</td><td class="num"><input class="cell" value="8" style="text-align:right;width:70px;min-width:0"></td><td>pcs</td><td class="num">1 450,00</td><td class="num">11 600,00</td><td class="act"><button class="btn icon sm"><i data-icon="trash"></i></button></td></tr>
+                <tr><td><input class="cell" value="VLV-BALL-50"></td><td>Ball valve DN50 stainless</td><td class="num"><input class="cell" value="40" style="text-align:right;width:70px;min-width:0"></td><td>pcs</td><td class="num">186,00</td><td class="num">7 440,00</td><td class="act"><button class="btn icon sm"><i data-icon="trash"></i></button></td></tr>
+                <tr><td><input class="cell req-empty" placeholder=""></td><td class="muted"></td><td class="num"><input class="cell" style="text-align:right;width:70px;min-width:0"></td><td></td><td></td><td></td><td class="act"></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Step 3: Summary -->
+        <div class="step-panel">
+          <div class="ifs-alert success"><i data-icon="check-circle"></i><span>All checks passed. Customer credit limit OK.</span></div>
+          <div class="ifs-group plain">
+            <div class="ifs-group-body">
+              <div class="ifs-fields cols-6">
+                <div class="ifs-field"><label>Customer</label><div class="ifs-field-value">CU-1011 <span class="desc">– Alpen Industrie GmbH</span></div></div>
+                <div class="ifs-field"><label>Site</label><div class="ifs-field-value">WRO</div></div>
+                <div class="ifs-field"><label>Wanted Delivery Date</label><div class="ifs-field-value">2026-11-04</div></div>
+                <div class="ifs-field"><label>Lines</label><div class="ifs-field-value">2</div></div>
+                <div class="ifs-field"><label>Net Amount</label><div class="ifs-field-value"><b>19 040,00 EUR</b></div></div>
+                <div class="ifs-field"><label>Release Order</label><label class="ifs-toggle"><input type="checkbox" checked></label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ifs-assistant-footer">
+        <button class="btn" data-step-back><i data-icon="play-left"></i>Previous</button>
+        <button class="btn" data-step-next><i data-icon="play"></i>Next</button>
+        <button class="btn" data-step-finish data-toast="Customer order C1048 created">Finish</button>
+        <a class="btn secondary" href="customer-orders.html">Cancel</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<dialog class="ifs-dialog lg" id="ifs-lov">
+  <div class="ifs-dialog-header"><h2>Customer</h2><button class="btn icon" data-close-dialog><i data-icon="close"></i></button></div>
+  <div class="ifs-dialog-body" style="padding:0">
+    <div class="ifs-list" style="border:0">
+      <div class="ifs-list-toolbar"><div class="ifs-input-icon left"><i data-icon="search"></i><input class="ifs-input" placeholder="Search" data-filter></div></div>
+      <table class="ifs-table compact">
+        <thead><tr><th>Customer No</th><th>Name</th><th>Country</th></tr></thead>
+        <tbody>
+          <tr><td>CU-1002</td><td>Baltic Machinery Sp. z o.o.</td><td>PL</td></tr>
+          <tr><td>CU-1011</td><td>Alpen Industrie GmbH</td><td>DE</td></tr>
+          <tr><td>CU-1015</td><td>Hydro Systems a.s.</td><td>CZ</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="ifs-dialog-footer"><button class="btn secondary" data-close-dialog>Cancel</button><button class="btn primary" data-close-dialog>OK</button></div>
+</dialog>
+</body>
+</html>

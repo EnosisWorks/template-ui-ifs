@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Orders</title>
+  <link rel="stylesheet" href="../../assets/ifs-cloud.css">
+  <script src="../../assets/ifs-cloud.js"></script>
+</head>
+<body data-nav="orders">
+<main class="ifs-page">
+
+  <div class="ifs-page-header">
+    <div class="ifs-breadcrumb"><a href="lobby.html"><i data-icon="home"></i></a><i data-icon="chevron-right"></i><a href="lobby.html">Sales</a><i data-icon="chevron-right"></i><span>Customer Orders</span></div>
+    <div class="ifs-title-row">
+      <h1>Customer Orders</h1>
+      <button class="fav" title="Add to favorites"><i data-icon="star" class="lg"></i></button>
+    </div>
+    <div class="ifs-commandbar">
+      <a class="btn" href="assistant.html"><i data-icon="plus"></i>New</a>
+      <button class="btn" data-needs-selection data-open-dialog="dlg-delete"><i data-icon="trash"></i>Delete</button>
+      <span class="sep"></span>
+      <button class="btn" data-needs-selection data-toast="2 orders released">Release</button>
+      <button class="btn" data-needs-selection>Reserve</button>
+      <button class="btn" data-needs-selection>Print Order Confirmation</button>
+      <div class="ifs-menu-wrap">
+        <button class="btn" data-menu>More<i data-icon="chevron-down" class="caret"></i></button>
+        <div class="ifs-menu">
+          <div class="hdr">Order processing</div>
+          <button>Create Pick List</button>
+          <button>Deliver</button>
+          <button>Cancel Order</button>
+          <hr>
+          <div class="hdr">Navigate</div>
+          <a href="#"><i data-icon="link"></i>Customer Order Lines</a>
+          <a href="#"><i data-icon="link"></i>Shipments</a>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn icon" title="Search panel" onclick="document.getElementById('search-panel').classList.toggle('hidden')"><i data-icon="filter"></i></button>
+      <button class="btn icon" title="Export to Excel" data-toast="Export started" data-toast-type="info"><i data-icon="download"></i></button>
+      <button class="btn icon" title="Table settings"><i data-icon="columns"></i></button>
+      <button class="btn icon" title="Refresh"><i data-icon="refresh"></i></button>
+    </div>
+  </div>
+
+  <div class="ifs-page-body">
+
+    <!-- Search panel -->
+    <div class="ifs-search-panel" id="search-panel">
+      <div class="ifs-fields">
+        <div class="ifs-field"><label>Order No</label><input class="ifs-input" placeholder="e.g. C10*"></div>
+        <div class="ifs-field"><label>Customer</label><div class="ifs-input-icon"><input class="ifs-input"><button data-open-dialog="ifs-lov"><i data-icon="lov"></i></button></div></div>
+        <div class="ifs-field"><label>Site</label><select class="ifs-select"><option>WRO</option><option>KRK</option><option>All</option></select></div>
+        <div class="ifs-field"><label>Status</label><select class="ifs-select"><option>All open</option><option>Planned</option><option>Released</option><option>Reserved</option><option>Blocked</option></select></div>
+        <div class="ifs-field"><label>Wanted Delivery From</label><div class="ifs-input-icon"><input class="ifs-input" value="2026-10-01"><button><i data-icon="calendar"></i></button></div></div>
+        <div class="ifs-field"><label>Coordinator</label><input class="ifs-input" value="AKOWALSKA"></div>
+      </div>
+      <div class="actions">
+        <button class="btn primary"><i data-icon="search"></i>Search</button>
+        <button class="btn secondary">Clear</button>
+        <div class="grow"></div>
+        <div class="chips">
+          <span class="chip">Site: <b>WRO</b><button><i data-icon="close"></i></button></span>
+          <span class="chip">Status: <b>All open</b><button><i data-icon="close"></i></button></span>
+          <span class="chip">Coordinator: <b>AKOWALSKA</b><button><i data-icon="close"></i></button></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- List -->
+    <div class="ifs-list">
+      <div class="ifs-list-toolbar">
+        <span class="title">Customer Orders</span><span class="muted" data-selected-count></span>
+        <div class="spacer"></div>
+        <div class="ifs-input-icon left"><i data-icon="search"></i><input class="ifs-input" placeholder="Filter rows" data-filter></div>
+      </div>
+      <div class="ifs-table-wrap">
+        <table class="ifs-table">
+          <thead>
+            <tr>
+              <th class="sel"><input type="checkbox" class="all-check"></th>
+              <th>Order No</th><th>Customer No</th><th>Customer Name</th><th>Order Type</th><th>Coordinator</th>
+              <th>Created</th><th>Wanted Delivery</th><th class="num">Lines</th><th class="num">Total Net (PLN)</th><th>Status</th><th class="act"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td><a href="customer-order.html">C1047</a></td><td>CU-1008</td><td>Nordic Tools AB</td><td>NO</td><td>AKOWALSKA</td><td>2026-10-20</td><td>2026-10-28</td><td class="num">4</td><td class="num">48 920,00</td><td><span class="badge danger">Blocked</span></td><td class="act"><button class="btn icon sm"><i data-icon="more-v"></i></button></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td><a href="customer-order.html">C1046</a></td><td>CU-1002</td><td>Baltic Machinery Sp. z o.o.</td><td>NO</td><td>AKOWALSKA</td><td>2026-10-19</td><td>2026-10-30</td><td class="num">2</td><td class="num">12 450,00</td><td><span class="badge info">Released</span></td><td class="act"><button class="btn icon sm"><i data-icon="more-v"></i></button></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td><a href="customer-order.html">C1045</a></td><td>CU-1011</td><td>Alpen Industrie GmbH</td><td>NO</td><td>PNOWAK</td><td>2026-10-18</td><td>2026-11-04</td><td class="num">9</td><td class="num">103 700,00</td><td><span class="badge primary">Reserved</span></td><td class="act"><button class="btn icon sm"><i data-icon="more-v"></i></button></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td><a href="customer-order.html">C1044</a></td><td>CU-1015</td><td>Hydro Systems a.s.</td><td>SEO</td><td>AKOWALSKA</td><td>2026-10-17</td><td>2026-11-06</td><td class="num">1</td><td class="num">7 830,00</td><td><span class="badge">Planned</span></td><td class="act"><button class="btn icon sm"><i data-icon="more-v"></i></button></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td><a href="customer-order.html">C1043</a></td><td>CU-1004</td><td>Vistula Energy S.A.</td><td>NO</td><td>PNOWAK</td><td>2026-10-15</td><td>2026-10-24</td><td class="num">6</td><td class="num">66 210,00</td><td><span class="badge success">Delivered</span></td><td class="act"><button class="btn icon sm"><i data-icon="more-v"></i></button></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td><a href="customer-order.html">C1042</a></td><td>CU-1009</td><td>Carpathia Steel S.R.L.</td><td>NO</td><td>JWISNIEWSKI</td><td>2026-10-14</td><td>2026-10-22</td><td class="num">3</td><td class="num">21 040,00</td><td><span class="badge warning">Partially Delivered</span></td><td class="act"><button class="btn icon sm"><i data-icon="more-v"></i></button></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td><a href="customer-order.html">C1041</a></td><td>CU-1002</td><td>Baltic Machinery Sp. z o.o.</td><td>NO</td><td>AKOWALSKA</td><td>2026-10-12</td><td>2026-10-21</td><td class="num">5</td><td class="num">38 600,00</td><td><span class="badge primary">Picked</span></td><td class="act"><button class="btn icon sm"><i data-icon="more-v"></i></button></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td><a href="customer-order.html">C1040</a></td><td>CU-1020</td><td>Danube Logistics Kft.</td><td>INT</td><td>JWISNIEWSKI</td><td>2026-10-10</td><td>2026-10-18</td><td class="num">2</td><td class="num">4 990,00</td><td><span class="badge success">Invoiced</span></td><td class="act"><button class="btn icon sm"><i data-icon="more-v"></i></button></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td><a href="customer-order.html">C1039</a></td><td>CU-1011</td><td>Alpen Industrie GmbH</td><td>NO</td><td>PNOWAK</td><td>2026-10-08</td><td>2026-10-29</td><td class="num">12</td><td class="num">214 300,00</td><td><span class="badge info">Released</span></td><td class="act"><button class="btn icon sm"><i data-icon="more-v"></i></button></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td><a href="customer-order.html">C1038</a></td><td>CU-1017</td><td>Oder Packaging Sp. z o.o.</td><td>NO</td><td>AKOWALSKA</td><td>2026-10-06</td><td>2026-10-16</td><td class="num">2</td><td class="num">9 380,00</td><td><span class="badge neutral">Cancelled</span></td><td class="act"><button class="btn icon sm"><i data-icon="more-v"></i></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ifs-list-footer"><span><b data-row-count></b> rows</span><div class="spacer"></div><span>Sum Total Net: <b class="num">529 420,00 PLN</b></span></div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Delete confirmation -->
+<dialog class="ifs-dialog confirm" id="dlg-delete">
+  <div class="ifs-dialog-header"><h2>Delete records</h2><button class="btn icon" data-close-dialog><i data-icon="close"></i></button></div>
+  <div class="ifs-dialog-body"><i data-icon="warning" style="color:var(--warning)"></i><div>Do you want to delete the selected customer orders? This action cannot be undone.</div></div>
+  <div class="ifs-dialog-footer"><button class="btn secondary" data-close-dialog>No</button><button class="btn primary" data-close-dialog data-toast="Records deleted">Yes</button></div>
+</dialog>
+
+<!-- List of values -->
+<dialog class="ifs-dialog lg" id="ifs-lov">
+  <div class="ifs-dialog-header"><h2>Customer</h2><button class="btn icon" data-close-dialog><i data-icon="close"></i></button></div>
+  <div class="ifs-dialog-body" style="padding:0">
+    <div class="ifs-list" style="border:0">
+      <div class="ifs-list-toolbar"><div class="ifs-input-icon left"><i data-icon="search"></i><input class="ifs-input" placeholder="Search" data-filter></div></div>
+      <table class="ifs-table compact">
+        <thead><tr><th>Customer No</th><th>Name</th><th>Country</th><th>Currency</th></tr></thead>
+        <tbody>
+          <tr><td>CU-1002</td><td>Baltic Machinery Sp. z o.o.</td><td>PL</td><td>PLN</td></tr>
+          <tr><td>CU-1004</td><td>Vistula Energy S.A.</td><td>PL</td><td>PLN</td></tr>
+          <tr><td>CU-1008</td><td>Nordic Tools AB</td><td>SE</td><td>EUR</td></tr>
+          <tr><td>CU-1011</td><td>Alpen Industrie GmbH</td><td>DE</td><td>EUR</td></tr>
+          <tr><td>CU-1015</td><td>Hydro Systems a.s.</td><td>CZ</td><td>EUR</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="ifs-dialog-footer"><button class="btn secondary" data-close-dialog>Cancel</button><button class="btn primary" data-close-dialog>OK</button></div>
+</dialog>
+</body>
+</html>

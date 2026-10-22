@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work Tasks</title>
+  <link rel="stylesheet" href="../../assets/ifs-cloud.css">
+  <script src="config.js"></script>
+  <script src="../../assets/ifs-cloud.js"></script>
+</head>
+<body data-nav="work-tasks">
+<main class="ifs-page">
+
+  <div class="ifs-page-header">
+    <div class="ifs-breadcrumb"><a href="index.html"><i data-icon="home"></i></a><i data-icon="chevron-right"></i><span>Maintenance</span><i data-icon="chevron-right"></i><span>Work Tasks</span></div>
+    <div class="ifs-title-row">
+      <h1>Work Tasks</h1>
+      <button class="fav" title="Add to favorites"><i data-icon="star" class="lg"></i></button>
+    </div>
+    <div class="ifs-commandbar">
+      <button class="btn"><i data-icon="plus"></i>New</button>
+      <button class="btn" data-needs-selection><i data-icon="trash"></i>Delete</button>
+      <span class="sep"></span>
+      <button class="btn" data-needs-selection data-toast="Work task started">Start Work</button>
+      <button class="btn" data-needs-selection>Report Work</button>
+      <div class="spacer"></div>
+      <button class="btn icon" title="Refresh"><i data-icon="refresh"></i></button>
+    </div>
+  </div>
+
+  <div class="ifs-page-body">
+    <div class="note-box"><span class="note-pin">1</span> Client request: technicians see only tasks for their own site by default.</div>
+
+    <div class="ifs-list">
+      <div class="ifs-list-toolbar">
+        <span class="title">Work Tasks</span><span class="muted" data-selected-count></span>
+        <div class="spacer"></div>
+        <div class="ifs-input-icon left"><i data-icon="search"></i><input class="ifs-input" placeholder="Filter rows" data-filter></div>
+      </div>
+      <div class="ifs-table-wrap">
+        <table class="ifs-table">
+          <thead><tr><th class="sel"><input type="checkbox" class="all-check"></th><th>Task No</th><th>Description</th><th>Object</th><th>Site</th><th>Planned Start</th><th>Priority</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td>WT-5012</td><td>Replace air filter</td><td>C-02 Compressor</td><td>WRO</td><td>2026-10-20</td><td><span class="badge danger plain">High</span></td><td><span class="badge warning">Overdue</span></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td>WT-5013</td><td>Lubrication round</td><td>L-01 Packaging line</td><td>WRO</td><td>2026-10-22</td><td><span class="badge plain">Medium</span></td><td><span class="badge info">Released</span></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td>WT-5014</td><td>Vibration measurement</td><td>P-07 Pump</td><td>WRO</td><td>2026-10-23</td><td><span class="badge plain">Medium</span></td><td><span class="badge primary">Work Started</span></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td>WT-5015</td><td>Safety inspection</td><td>F-01 Forklift</td><td>WRO</td><td>2026-10-27</td><td><span class="badge plain">Low</span></td><td><span class="badge">Prepared</span></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="row-check"></td><td>WT-5016</td><td>Belt replacement</td><td>L-01 Packaging line</td><td>WRO</td><td>2026-10-29</td><td><span class="badge danger plain">High</span></td><td><span class="badge">Prepared</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ifs-list-footer"><span><b data-row-count></b> rows</span></div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

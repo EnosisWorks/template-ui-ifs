@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Order Management</title>
+  <link rel="stylesheet" href="../../assets/ifs-cloud.css">
+  <script src="../../assets/ifs-cloud.js"></script>
+</head>
+<body data-nav="lobby">
+<main class="ifs-page">
+
+  <div class="ifs-page-header">
+    <div class="ifs-breadcrumb"><a href="lobby.html"><i data-icon="home"></i></a><i data-icon="chevron-right"></i><span>Sales</span><i data-icon="chevron-right"></i><span>Customer Order Management</span><button class="btn icon sm" title="Refresh" data-toast="Lobby refreshed" data-toast-type="info"><i data-icon="refresh" class="sm"></i></button></div>
+    <div class="ifs-title-row">
+      <h1>Customer Order Management</h1>
+      <span class="params" title="Lobby parameters">Company=% | Site=WRO | Customer No=% | Coordinator=% <i data-icon="chevron-down"></i></span>
+      <div class="spacer"></div>
+      <span class="ifs-zoom"><input type="range" min="50" max="150" value="100"> 100 %</span>
+      <button class="btn icon secondary sm" title="Edit lobby"><i data-icon="wrench"></i></button>
+      <button class="btn icon secondary sm" title="Lobby settings"><i data-icon="settings"></i></button>
+    </div>
+  </div>
+
+  <div class="ifs-page-body">
+    <div class="ifs-lobby">
+
+      <!-- Row 1: purple status counters + light invoice counters -->
+      <a class="ifs-tile counter purple" href="customer-orders.html"><div class="ifs-tile-header">Planned</div><div class="ifs-tile-body"><div class="ifs-counter">13</div><div class="caption">Orders</div></div></a>
+      <a class="ifs-tile counter purple" href="customer-orders.html"><div class="ifs-tile-header">Released</div><div class="ifs-tile-body"><div class="ifs-counter">25</div><div class="caption">Orders</div></div></a>
+      <a class="ifs-tile counter purple" href="customer-orders.html"><div class="ifs-tile-header">Reserved</div><div class="ifs-tile-body"><div class="ifs-counter">3</div><div class="caption">Orders</div></div></a>
+      <a class="ifs-tile counter purple" href="customer-orders.html"><div class="ifs-tile-header">Picked</div><div class="ifs-tile-body"><div class="ifs-counter">6</div><div class="caption">Orders</div></div></a>
+      <a class="ifs-tile counter purple" href="customer-orders.html"><div class="ifs-tile-header">Partially Delivered</div><div class="ifs-tile-body"><div class="ifs-counter">2</div><div class="caption">Orders</div></div></a>
+      <a class="ifs-tile counter purple" href="customer-orders.html"><div class="ifs-tile-header">To Delivery Confirm</div><div class="ifs-tile-body"><div class="ifs-counter">0</div><div class="caption">Orders</div></div></a>
+      <a class="ifs-tile counter purple" href="customer-orders.html"><div class="ifs-tile-header">Delivered</div><div class="ifs-tile-body"><div class="ifs-counter">9</div><div class="caption">Orders</div></div></a>
+      <a class="ifs-tile counter light" href="#"><div class="ifs-tile-header">Invoices Due Today</div><div class="ifs-tile-body"><div class="ifs-counter">0</div><div class="caption">&nbsp;</div></div></a>
+      <a class="ifs-tile counter light" href="#"><div class="ifs-tile-header">Delivered Not Invoiced</div><div class="ifs-tile-body"><div class="ifs-counter">28</div><div class="caption">Normal Invoices</div></div></a>
+      <a class="ifs-tile counter light" href="#"><div class="ifs-tile-header">Delivered Not Invoiced</div><div class="ifs-tile-body"><div class="ifs-counter">3</div><div class="caption">Collective Invoices</div></div></a>
+
+      <!-- Row 2: white counters + charts -->
+      <a class="ifs-tile counter" href="customer-orders.html"><div class="ifs-tile-header">Late</div><div class="ifs-tile-body"><div class="ifs-counter">172</div><div class="caption">Order Lines</div></div></a>
+      <a class="ifs-tile counter" href="customer-orders.html"><div class="ifs-tile-header">Created Today</div><div class="ifs-tile-body"><div class="ifs-counter">0</div><div class="caption">Orders</div></div></a>
+
+      <div class="ifs-tile w-4">
+        <div class="ifs-tile-header">Monthly Orders And Lines Intake</div>
+        <button class="tile-menu" title="Options"><i data-icon="chevron-down"></i></button>
+        <div class="ifs-tile-body" style="padding-top:4px">
+          <svg class="ifs-linechart" viewBox="0 0 400 120" preserveAspectRatio="none">
+            <g class="grid"><line x1="24" y1="8" x2="396" y2="8"/><line x1="24" y1="23" x2="396" y2="23"/><line x1="24" y1="38" x2="396" y2="38"/><line x1="24" y1="53" x2="396" y2="53"/><line x1="24" y1="68" x2="396" y2="68"/><line x1="24" y1="83" x2="396" y2="83"/></g>
+            <line class="axis" x1="24" y1="98" x2="396" y2="98"/>
+            <g text-anchor="end"><text x="20" y="10">300</text><text x="20" y="25">250</text><text x="20" y="40">200</text><text x="20" y="55">150</text><text x="20" y="70">100</text><text x="20" y="85">50</text><text x="20" y="100">0</text></g>
+            <g text-anchor="middle"><text x="50" y="112">02 - 2026</text><text x="118" y="112">03 - 2026</text><text x="186" y="112">04 - 2026</text><text x="254" y="112">05 - 2026</text><text x="322" y="112">07 - 2026</text><text x="386" y="112">Others</text></g>
+            <polyline fill="none" stroke="var(--c1)" stroke-width="1.4" points="50,92 118,10 186,86 254,90 322,85 386,87"/>
+            <polyline fill="none" stroke="var(--c2)" stroke-width="1.4" points="50,96 118,95 186,97 254,91 322,97 386,92"/>
+            <g fill="#fff" stroke="var(--c1)" stroke-width="1.2"><circle cx="50" cy="92" r="2.4"/><circle cx="118" cy="10" r="2.4"/><circle cx="186" cy="86" r="2.4"/><circle cx="254" cy="90" r="2.4"/><circle cx="322" cy="85" r="2.4"/><circle cx="386" cy="87" r="2.4"/></g>
+            <g fill="#fff" stroke="var(--c2)" stroke-width="1.2"><circle cx="50" cy="96" r="2.4"/><circle cx="118" cy="95" r="2.4"/><circle cx="186" cy="97" r="2.4"/><circle cx="254" cy="91" r="2.4"/><circle cx="322" cy="97" r="2.4"/><circle cx="386" cy="92" r="2.4"/></g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="ifs-tile w-2">
+        <div class="ifs-tile-header">Incoming Customer Orders to be Approved</div>
+        <button class="tile-menu" title="Options"><i data-icon="chevron-down"></i></button>
+        <div class="ifs-tile-body">
+          <div class="ifs-hbars" style="margin-top:22px">
+            <div class="r"><span>Stopped</span><div style="width:85%"></div><span class="num">3</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ifs-tile w-2">
+        <div class="ifs-tile-header">Incoming Change Requests to be Approved</div>
+        <button class="tile-menu" title="Options"><i data-icon="chevron-down"></i></button>
+        <div class="ifs-tile-body"><div class="ifs-empty" style="padding:20px 0 0">No data</div></div>
+      </div>
+
+      <!-- Row 3: lists -->
+      <div class="ifs-tile w-2 h-2">
+        <div class="ifs-tile-header">Blocked Customer Orders</div>
+        <button class="tile-menu" title="Options"><i data-icon="chevron-down"></i></button>
+        <div class="ifs-tile-body">
+          <ul class="ifs-mini-list" style="margin-top:22px">
+            <li><div class="grow"><a href="customer-order.html"><b>C1047</b></a><small>Nordic Tools AB · Credit blocked</small></div></li>
+            <li><div class="grow"><a href="customer-order.html"><b>C1031</b></a><small>Hydro Systems a.s. · Credit blocked</small></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ifs-tile w-2 h-2 purple">
+        <div class="ifs-tile-header">Order Processing</div>
+        <div class="ifs-tile-body">
+          <ul class="ifs-kv" style="margin-top:28px">
+            <li><a href="customer-orders.html">Release Customer Orders</a><span>13</span></li>
+            <li><a href="customer-orders.html">Print Order Confirmations</a><span>7</span></li>
+            <li class="gap"><a href="customer-orders.html">Reserve Customer Orders</a><span>4</span></li>
+            <li><a href="customer-orders.html">Handle Shortages</a><span>1</span></li>
+            <li class="gap"><a href="customer-orders.html">Create Pick List</a><span>3</span></li>
+            <li><a href="customer-orders.html">Print Pick List</a><span>45</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ifs-tile w-2 h-2">
+        <div class="ifs-tile-header">Progress of Order Lines Due Today</div>
+        <button class="tile-menu" title="Options"><i data-icon="chevron-down"></i></button>
+        <div class="ifs-tile-body" style="gap:12px;padding-top:30px">
+          <div><div class="row" style="justify-content:space-between"><span>Picked</span><b class="num">8 / 12</b></div><div class="ifs-progress brand mt-8"><div style="width:66%"></div></div></div>
+          <div><div class="row" style="justify-content:space-between"><span>Delivered</span><b class="num">5 / 12</b></div><div class="ifs-progress brand mt-8"><div style="width:42%"></div></div></div>
+          <div><div class="row" style="justify-content:space-between"><span>Invoiced</span><b class="num">2 / 12</b></div><div class="ifs-progress brand mt-8"><div style="width:17%"></div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+</body>
+</html>
